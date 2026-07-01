@@ -24,6 +24,9 @@ export function SiteHeader() {
               {s.title}
             </Link>
           ))}
+          <Link href="/rehber" className="hover:text-foreground">
+            Rehber
+          </Link>
         </nav>
         <Button asChild size="sm">
           <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">

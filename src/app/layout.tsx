@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,25 +41,9 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
+const graphLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "3D Tabela",
-  image: "https://3dtabela.com/og.jpg",
-  "@id": "https://3dtabela.com",
-  url: "https://3dtabela.com",
-  telephone: "+905446732202",
-  email: "info@3dtabela.com",
-  priceRange: "₺₺",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "İstanbul",
-    addressCountry: "TR",
-  },
-  areaServed: "TR",
-  description:
-    "3D kutu harf, ışıklı tabela, kabartma logo ve kurumsal tabela üretimi. Tasarımdan montaja anahtar teslim çözümler.",
-  sameAs: ["https://wa.me/905446732202"],
+  "@graph": [organizationSchema, websiteSchema],
 };
 
 export default function RootLayout({
@@ -76,7 +61,7 @@ export default function RootLayout({
         <WhatsAppButton />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(graphLd) }}
         />
       </body>
     </html>

@@ -40,6 +40,11 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/rehber" className="hover:text-foreground">
+                Tabela Rehberi
+              </Link>
+            </li>
           </ul>
         </div>
         <div>

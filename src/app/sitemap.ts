@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { services, SITE_URL } from "@/lib/services";
 import { regions } from "@/lib/regions";
 import { districts } from "@/lib/districts";
+import { articles } from "@/lib/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -27,6 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const articlePages = articles.map((a) => ({
+    url: `${SITE_URL}/rehber/${a.slug}`,
+    lastModified: new Date(a.updated),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   return [
     {
       url: SITE_URL,
@@ -36,6 +44,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...servicePages,
     ...regionPages,
+    {
+      url: `${SITE_URL}/rehber`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    ...articlePages,
     ...districtPages,
   ];
 }
