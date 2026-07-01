@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Boxes } from "lucide-react";
 import { services } from "@/lib/services";
 import { regions } from "@/lib/regions";
+import { cities } from "@/lib/cities";
 
 export function SiteFooter() {
   return (
@@ -37,6 +38,16 @@ export function SiteFooter() {
                   className="hover:text-foreground"
                 >
                   {r.name} Tabela
+                </Link>
+              </li>
+            ))}
+            {cities.map((c) => (
+              <li key={c.slug}>
+                <Link
+                  href={`/bolgeler/${c.slug}`}
+                  className="hover:text-foreground"
+                >
+                  {c.name} Tabela
                 </Link>
               </li>
             ))}

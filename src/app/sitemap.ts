@@ -3,6 +3,7 @@ import { services, SITE_URL } from "@/lib/services";
 import { regions } from "@/lib/regions";
 import { districts } from "@/lib/districts";
 import { articles } from "@/lib/articles";
+import { cities } from "@/lib/cities";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -35,6 +36,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const cityPages = cities.map((c) => ({
+    url: `${SITE_URL}/bolgeler/${c.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  const cityDistrictPages = cities.flatMap((c) =>
+    c.districts.map((d) => ({
+      url: `${SITE_URL}/bolgeler/${c.slug}/${d.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }))
+  );
+
   return [
     {
       url: SITE_URL,
@@ -52,5 +69,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...articlePages,
     ...districtPages,
+    ...cityPages,
+    ...cityDistrictPages,
   ];
 }
