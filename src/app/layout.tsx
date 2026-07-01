@@ -40,6 +40,27 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "3D Tabela",
+  image: "https://3dtabela.com/og.jpg",
+  "@id": "https://3dtabela.com",
+  url: "https://3dtabela.com",
+  telephone: "+905446732202",
+  email: "info@3dtabela.com",
+  priceRange: "₺₺",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "İstanbul",
+    addressCountry: "TR",
+  },
+  areaServed: "TR",
+  description:
+    "3D kutu harf, ışıklı tabela, kabartma logo ve kurumsal tabela üretimi. Tasarımdan montaja anahtar teslim çözümler.",
+  sameAs: ["https://wa.me/905446732202"],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,7 +71,14 @@ export default function RootLayout({
       lang="tr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}<WhatsAppButton /></body>
+      <body className="min-h-full flex flex-col font-sans">
+        {children}
+        <WhatsAppButton />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </body>
     </html>
   );
 }

@@ -13,32 +13,38 @@ import {
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { WHATSAPP } from "@/lib/services";
 
 const services = [
   {
     icon: Boxes,
     title: "3D Kutu Harf",
     desc: "Paslanmaz, pleksi ve kompozit malzemeyle dayanıklı, hacimli kutu harf tabelalar.",
+    href: "/hizmetler/kutu-harf-tabela",
   },
   {
     icon: Lightbulb,
     title: "Işıklı Tabela",
     desc: "LED aydınlatmalı, enerji tasarruflu, gece net okunan ışıklı tabela çözümleri.",
+    href: "/hizmetler/isikli-tabela",
   },
   {
     icon: Ruler,
     title: "Kabartma Logo",
     desc: "Kurumsal kimliğinize uygun, hassas kesim kabartma harf ve logo uygulamaları.",
+    href: "/hizmetler/kabartma-logo",
   },
   {
     icon: Wrench,
     title: "Montaj & Bakım",
     desc: "Keşiften montaja anahtar teslim hizmet, sonrasında bakım ve destek.",
+    href: "#iletisim",
   },
 ];
 
@@ -52,29 +58,7 @@ const steps = [
 export default function Home() {
   return (
     <>
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-2 font-semibold">
-            <Boxes className="size-6" />
-            <span className="text-lg">3D Tabela</span>
-          </Link>
-          <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
-            <Link href="#hizmetler" className="hover:text-foreground">
-              Hizmetler
-            </Link>
-            <Link href="#surec" className="hover:text-foreground">
-              Süreç
-            </Link>
-            <Link href="#iletisim" className="hover:text-foreground">
-              İletişim
-            </Link>
-          </nav>
-          <Button asChild size="sm">
-            <Link href="#iletisim">Teklif Al</Link>
-          </Button>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="flex-1">
         {/* Hero */}
@@ -92,9 +76,9 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild size="lg">
-                <Link href="#iletisim">
+                <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
                   Ücretsiz Teklif Al <ArrowRight className="size-4" />
-                </Link>
+                </a>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link href="#hizmetler">Hizmetleri İncele</Link>
@@ -114,15 +98,20 @@ export default function Home() {
             </div>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {services.map((s) => (
-                <Card key={s.title}>
-                  <CardHeader>
-                    <div className="mb-2 flex size-11 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                      <s.icon className="size-5" />
-                    </div>
-                    <CardTitle>{s.title}</CardTitle>
-                    <CardDescription>{s.desc}</CardDescription>
-                  </CardHeader>
-                </Card>
+                <Link key={s.title} href={s.href} className="group">
+                  <Card className="h-full transition-colors group-hover:border-primary/40">
+                    <CardHeader>
+                      <div className="mb-2 flex size-11 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                        <s.icon className="size-5" />
+                      </div>
+                      <CardTitle className="flex items-center gap-1">
+                        {s.title}
+                        <ArrowRight className="size-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                      </CardTitle>
+                      <CardDescription>{s.desc}</CardDescription>
+                    </CardHeader>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
@@ -149,7 +138,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA / Contact */}
+        {/* Contact */}
         <section id="iletisim" className="border-t bg-muted/30">
           <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 lg:grid-cols-2">
             <div>
@@ -161,13 +150,25 @@ export default function Home() {
                 hazırlayalım.
               </p>
               <ul className="mt-8 space-y-4">
-                <li className="flex items-center gap-3">
-                  <Phone className="size-5 text-primary" />
-                  <a href="https://wa.me/905446732202" target="_blank" rel="noopener noreferrer" className="hover:text-primary">0544 673 22 02 (WhatsApp)</a>
+                <li>
+                  <a
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 hover:text-primary"
+                  >
+                    <Phone className="size-5 text-primary" />
+                    <span>0544 673 22 02 (WhatsApp)</span>
+                  </a>
                 </li>
-                <li className="flex items-center gap-3">
-                  <Mail className="size-5 text-primary" />
-                  <span>info@3dtabela.com</span>
+                <li>
+                  <a
+                    href="mailto:info@3dtabela.com"
+                    className="flex items-center gap-3 hover:text-primary"
+                  >
+                    <Mail className="size-5 text-primary" />
+                    <span>info@3dtabela.com</span>
+                  </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <MapPin className="size-5 text-primary" />
@@ -188,56 +189,30 @@ export default function Home() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Teklif Formu</CardTitle>
+                <CardTitle>Hızlı İletişim</CardTitle>
                 <CardDescription>
-                  Bilgilerinizi bırakın, biz sizi arayalım.
+                  En hızlı yanıt için WhatsApp&apos;tan yazın; ölçü veya fotoğraf
+                  gönderin, size özel teklif çıkaralım.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <form className="space-y-4">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <input
-                      className="h-10 w-full rounded-md border bg-background px-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                      placeholder="Ad Soyad"
-                      name="name"
-                    />
-                    <input
-                      className="h-10 w-full rounded-md border bg-background px-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                      placeholder="Telefon"
-                      name="phone"
-                    />
-                  </div>
-                  <input
-                    className="h-10 w-full rounded-md border bg-background px-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                    placeholder="E-posta"
-                    type="email"
-                    name="email"
-                  />
-                  <textarea
-                    className="min-h-24 w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                    placeholder="Projenizden kısaca bahsedin..."
-                    name="message"
-                  />
-                  <Button type="submit" className="w-full">
-                    Teklif İste
-                  </Button>
-                </form>
-              </CardContent>
+              <div className="px-6 pb-6">
+                <Button asChild size="lg" className="w-full">
+                  <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+                    WhatsApp&apos;tan Teklif Al <ArrowRight className="size-4" />
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="mt-3 w-full">
+                  <a href="tel:+905446732202">
+                    <Phone className="size-4" /> Hemen Ara: 0544 673 22 02
+                  </a>
+                </Button>
+              </div>
             </Card>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row">
-          <div className="flex items-center gap-2 font-semibold text-foreground">
-            <Boxes className="size-5" />
-            3D Tabela
-          </div>
-          <p>© {new Date().getFullYear()} 3dtabela.com — Tüm hakları saklıdır.</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
