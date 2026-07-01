@@ -7,6 +7,7 @@ import { CtaBand } from "@/components/cta-band";
 import { Faq, type QA } from "@/components/faq";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { regions } from "@/lib/regions";
+import { districts } from "@/lib/districts";
 import { SITE_URL } from "@/lib/services";
 
 const reg = regions.find((r) => r.slug === "istanbul")!;
@@ -183,6 +184,27 @@ export default function Page() {
                     {anadolu.join(", ")} ve çevresi.
                   </p>
                 </div>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold tracking-tight">
+                Hizmet verdiğimiz ilçeler
+              </h2>
+              <p className="mt-3 text-muted-foreground">
+                İstanbul genelinde çalışıyoruz; aşağıdaki ilçeler için ayrıntılı
+                bilgi sayfalarımıza göz atabilirsiniz.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {districts.map((d) => (
+                  <Link
+                    key={d.slug}
+                    href={`/bolgeler/istanbul/${d.slug}`}
+                    className="rounded-full border px-3 py-1.5 text-sm hover:border-primary/40 hover:text-primary"
+                  >
+                    {d.name} Tabela
+                  </Link>
+                ))}
               </div>
             </section>
 
