@@ -163,7 +163,7 @@ export default function Home() {
               <ul className="mt-8 space-y-4">
                 <li className="flex items-center gap-3">
                   <Phone className="size-5 text-primary" />
-                  <span>+90 5xx xxx xx xx</span>
+                  <a href="https://wa.me/905446732202" target="_blank" rel="noopener noreferrer" className="hover:text-primary">0544 673 22 02 (WhatsApp)</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="size-5 text-primary" />
