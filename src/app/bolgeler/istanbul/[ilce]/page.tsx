@@ -22,12 +22,19 @@ export async function generateMetadata({
   const { ilce } = await params;
   const d = districts.find((x) => x.slug === ilce);
   if (!d) return {};
-  const title = `${d.name} Tabela — Kutu Harf & Işıklı Tabela İmalatı`;
-  const description = `${d.name} tabela imalatı: kutu harf, ışıklı tabela ve kabartma logo. ${d.name} ve çevresine ücretsiz keşif, hızlı montaj, garantili işçilik.`;
+  // Başlık, ilçeye özgü BENZERSİZ kuyrukla kurulur → 11 başlık aynı olmaz.
+  const title = `${d.name} Tabela — ${d.tail}`;
+  const description = `${d.name} tabela imalatı: kutu harf, ışıklı tabela ve kabartma logo. ${d.name} tabelacı olarak ücretsiz keşif, hızlı montaj ve garantili işçilikle yanınızdayız.`;
   const url = `${SITE_URL}/bolgeler/istanbul/${d.slug}`;
   return {
     title,
     description,
+    keywords: [
+      d.primaryKeyword,
+      d.secondaryKeyword,
+      `${d.name.toLocaleLowerCase("tr")} kutu harf tabela`,
+      `${d.name.toLocaleLowerCase("tr")} ışıklı tabela`,
+    ],
     alternates: { canonical: url },
     openGraph: { title, description, url, type: "article", locale: "tr_TR" },
   };
@@ -146,8 +153,9 @@ export default async function Page({ params }: Props) {
                 {d.yaka} Yakası&apos;nda hizmetinizdeyiz
               </h2>
               <p className="mt-3 text-muted-foreground">
-                {d.name}, İstanbul&apos;un {d.yaka} Yakası&apos;ndadır ve tüm
-                çevre ilçelere de hizmet veriyoruz. Daha geniş bilgi için{" "}
+                {d.name}, İstanbul&apos;un {d.yaka} Yakası&apos;ndadır;{" "}
+                {d.name} tabelacı olarak buradaki tüm mahalleler ve çevre
+                ilçelere de hizmet veriyoruz. Daha geniş bilgi için{" "}
                 <Link
                   href="/bolgeler/istanbul"
                   className="font-medium text-primary underline-offset-4 hover:underline"

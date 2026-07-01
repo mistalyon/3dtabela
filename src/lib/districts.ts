@@ -6,6 +6,13 @@ export type District = {
   slug: string;
   name: string; // İlçe adı
   yaka: "Avrupa" | "Anadolu";
+  // Sayfanın sahiplendiği TEK birincil yerel kelime (ör. "başakşehir tabela").
+  primaryKeyword: string;
+  // Yerel ikincil varyant (ör. "başakşehir tabelacı"). İçerikte de geçer.
+  secondaryKeyword: string;
+  // Başlığa eklenen, ilçenin ticari karakterine özgü BENZERSİZ uzun kuyruk.
+  // Böylece 11 başlık birbirinin aynısı olmaz; head-term seyreltmesi azalır.
+  tail: string;
   // Her ilçeye özgü, o bölgenin ticari karakterini anlatan giriş (özgün).
   intro: string;
   // O ilçenin iş dokusuna özgü ikinci paragraf (özgün).
@@ -20,6 +27,9 @@ export const districts: District[] = [
     slug: "ikitelli",
     name: "İkitelli",
     yaka: "Avrupa",
+    primaryKeyword: "ikitelli tabela",
+    secondaryKeyword: "ikitelli tabelacı",
+    tail: "Totem & Paslanmaz Kutu Harf",
     intro:
       "İkitelli, İstanbul'un en büyük sanayi ve toptan ticaret bölgelerinden biridir; irili ufaklı binlerce atölye, showroom ve toptancı burada faaliyet gösterir. Bu yoğunlukta cephenizin fark edilmesi için dayanıklı, net okunan ve profesyonel bir tabela şarttır.",
     local:
@@ -32,6 +42,9 @@ export const districts: District[] = [
     slug: "basaksehir",
     name: "Başakşehir",
     yaka: "Avrupa",
+    primaryKeyword: "başakşehir tabela",
+    secondaryKeyword: "başakşehir tabelacı",
+    tail: "Kurumsal & Işıklı Tabela",
     intro:
       "Başakşehir, yeni yerleşim alanları, plazaları ve alışveriş merkezleriyle hızla büyüyen, kurumsal işletme yoğunluğu yüksek bir ilçedir. Modern cephelere yakışan, prestijli ve ışıklı tabela çözümleri burada öne çıkıyor.",
     local:
@@ -44,6 +57,9 @@ export const districts: District[] = [
     slug: "bagcilar",
     name: "Bağcılar",
     yaka: "Avrupa",
+    primaryKeyword: "bağcılar tabela",
+    secondaryKeyword: "bağcılar tabelacı",
+    tail: "Dükkan & Işıklı Tabela",
     intro:
       "Bağcılar, yoğun esnaf ve küçük sanayi dokusuyla İstanbul'un en hareketli ticaret ilçelerinden biridir. Cadde üzeri dükkânlardan üretim atölyelerine kadar her işletme, rekabette öne çıkmak için güçlü bir tabelaya ihtiyaç duyar.",
     local:
@@ -56,6 +72,9 @@ export const districts: District[] = [
     slug: "kucukcekmece",
     name: "Küçükçekmece",
     yaka: "Avrupa",
+    primaryKeyword: "küçükçekmece tabela",
+    secondaryKeyword: "küçükçekmece tabelacı",
+    tail: "Mağaza & LED Işıklı Tabela",
     intro:
       "Küçükçekmece, yüksek nüfusu ve yoğun cadde ticaretiyle Avrupa yakasının en canlı perakende bölgelerinden biridir. Yaya ve araç trafiğinin yoğun olduğu bu ilçede, gece de net okunan ışıklı tabela büyük fark yaratır.",
     local:
@@ -68,6 +87,9 @@ export const districts: District[] = [
     slug: "esenyurt",
     name: "Esenyurt",
     yaka: "Avrupa",
+    primaryKeyword: "esenyurt tabela",
+    secondaryKeyword: "esenyurt tabelacı",
+    tail: "Dükkan & Anahtar Teslim Tabela",
     intro:
       "Esenyurt, hızla büyüyen nüfusu ve sürekli açılan yeni işletmeleriyle İstanbul'un en dinamik ilçelerinden biridir. Yeni açılan bir dükkân ya da şube için ilk izlenimi belirleyen en önemli unsur, kaliteli bir tabeladır.",
     local:
@@ -80,6 +102,9 @@ export const districts: District[] = [
     slug: "kadikoy",
     name: "Kadıköy",
     yaka: "Anadolu",
+    primaryKeyword: "kadıköy tabela",
+    secondaryKeyword: "kadıköy tabelacı",
+    tail: "Kafe & Restoran Tabelası",
     intro:
       "Kadıköy, kafe ve restoran kültürü, butik mağazaları ve Bağdat Caddesi hattıyla Anadolu yakasının en prestijli perakende bölgesidir. Estetik ve markaya özel tabela, bu rekabetçi ortamda işletmenizi bir adım öne taşır.",
     local:
@@ -92,6 +117,9 @@ export const districts: District[] = [
     slug: "atasehir",
     name: "Ataşehir",
     yaka: "Anadolu",
+    primaryKeyword: "ataşehir tabela",
+    secondaryKeyword: "ataşehir tabelacı",
+    tail: "Kurumsal & Plaza Tabelası",
     intro:
       "Ataşehir, İstanbul Finans Merkezi ve plazalarıyla Anadolu yakasının kurumsal kalbidir. Ofis, banka ve kurumsal işletmelerin yoğun olduğu bu bölgede, prestijli ve şık tabela uygulamaları ön plandadır.",
     local:
@@ -104,6 +132,9 @@ export const districts: District[] = [
     slug: "umraniye",
     name: "Ümraniye",
     yaka: "Anadolu",
+    primaryKeyword: "ümraniye tabela",
+    secondaryKeyword: "ümraniye tabelacı",
+    tail: "Totem & Işıklı Tabela",
     intro:
       "Ümraniye, hem yoğun sanayi ve toptan ticaret hem de büyük alışveriş merkezleriyle Anadolu yakasının en yüksek ticaret hacmine sahip ilçelerinden biridir. Bu çeşitlilik, her işletme türüne uygun tabela çözümü gerektirir.",
     local:
@@ -116,6 +147,9 @@ export const districts: District[] = [
     slug: "sisli",
     name: "Şişli",
     yaka: "Avrupa",
+    primaryKeyword: "şişli tabela",
+    secondaryKeyword: "şişli tabelacı",
+    tail: "Mağaza & Kurumsal Tabela",
     intro:
       "Şişli, plazaları, mağazaları ve kurumsal merkezleriyle İstanbul'un en yoğun iş bölgelerinden biridir. Rekabetin yüksek olduğu bu merkezde, kaliteli ve dikkat çekici bir tabela markanızın görünürlüğü için belirleyicidir.",
     local:
@@ -128,6 +162,9 @@ export const districts: District[] = [
     slug: "beyoglu",
     name: "Beyoğlu",
     yaka: "Avrupa",
+    primaryKeyword: "beyoğlu tabela",
+    secondaryKeyword: "beyoğlu tabelacı",
+    tail: "Mağaza & Cephe Tabelası",
     intro:
       "Beyoğlu, İstiklal Caddesi ve çevresindeki tarihi dokusu, yoğun yaya trafiği ve turistik mağazalarıyla eşsiz bir ticaret bölgesidir. Tarihi cephelerle uyumlu, hem şık hem dikkat çekici tabela uygulamaları burada önemlidir.",
     local:
@@ -140,6 +177,9 @@ export const districts: District[] = [
     slug: "fatih",
     name: "Fatih",
     yaka: "Avrupa",
+    primaryKeyword: "fatih tabela",
+    secondaryKeyword: "fatih tabelacı",
+    tail: "Dükkan & Işıklı Kutu Tabela",
     intro:
       "Fatih, tarihi yarımadanın toptan çarşıları, esnaf yoğunluğu ve geleneksel ticaret dokusuyla İstanbul'un en canlı alışveriş bölgelerinden biridir. Yoğun çarşı trafiğinde dükkânınızı öne çıkarmak için net ve dayanıklı bir tabela şarttır.",
     local:
